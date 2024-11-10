@@ -1,11 +1,15 @@
 import _ from "lodash";
 import ProductSection from "../components/ProductSection";
 import { getEntriesByContentType } from "../lib/helpers";
+import { useContentfulLiveUpdates, useContentfulInspectorMode } from "@contentful/live-preview/react"
 
 export default function Home(props) {
   const page = _.get(props, "page");
-  const sections = _.get(page, "fields.sections"); // this field is an array of page sections
-  const headline = _.get(page, "fields.headline");
+  const updatedPage = useContentfulLiveUpdates(page, 'en-US') || page
+  const sections = _.get(updatedPage, "fields.sections"); // this field is an array of page sections
+  const headline = _.get(updatedPage, "fields.headline");
+
+  const inspectorProps = useContentfulInspectorMode()
 
   console.log(page); // you can view this object in the console
 
@@ -13,7 +17,15 @@ export default function Home(props) {
   return (
     <>
       {/* {JSON.stringify(page)} */}
-      <h1 className="font-bold text-2xl mb-4 text-center">{headline}</h1>
+      <h1
+        {...inspectorProps({
+          entryId: page.sys.id,
+          fieldId: "headline",
+        })}
+        className="font-bold text-2xl mb-4 text-center"
+      >
+        {headline}
+      </h1>
       <div className="flex flex-col space-y-4">
         {Array.isArray(sections)
           ? sections.map((section, sectionIndex) => {
