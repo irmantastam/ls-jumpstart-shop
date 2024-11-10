@@ -19,11 +19,11 @@ export default function Home(props) {
       {/* {JSON.stringify(page)} */}
 
       <h1
-        // {...ContentfulLivePreview.getProps({
-        //   entryId: page.sys.id,
-        //   fieldId: "headline",
-        //   locale: DEFAULT_LOCALE,
-        // })}
+         {...ContentfulLivePreview.getProps({
+           entryId: page.sys.id,
+           fieldId: "headline",
+           locale: DEFAULT_LOCALE,
+         })}
         className="font-bold text-2xl mb-4 text-center"
       >
         {headline}

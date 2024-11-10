@@ -1,5 +1,4 @@
 import "../styles/globals.css";
-import "@contentful/live-preview/style.css";
 import MainLayout from "../layouts/MainLayout";
 import { ContentfulLivePreviewProvider } from "@contentful/live-preview/react";
 
