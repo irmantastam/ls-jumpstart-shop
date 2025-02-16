@@ -5,14 +5,13 @@ import { useContentfulLiveUpdates, useContentfulInspectorMode } from "@contentfu
 
 export default function Home(props) {
   const page = _.get(props, "page");
-  const updatedPage = useContentfulLiveUpdates(page, 'en-US') || page
+  const updatedPage = useContentfulLiveUpdates(page, { locale: 'en-US' }) || page
   const sections = _.get(updatedPage, "fields.sections"); // this field is an array of page sections
   const headline = _.get(updatedPage, "fields.headline");
 
   const inspectorProps = useContentfulInspectorMode()
 
   console.log(page); // you can view this object in the console
-
 
   return (
     <>

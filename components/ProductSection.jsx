@@ -1,5 +1,7 @@
 import _ from "lodash";
 import ProductCardComponent from "./ProductCardComponent";
+import { useContentfulInspectorMode } from "@contentful/live-preview/react"
+
 const ProductSection = (props) => {
   const id = _.get(props, "id");
   const fields = _.get(props, "fields");
@@ -8,14 +10,25 @@ const ProductSection = (props) => {
   const backgroundColor = _.get(fields, "backgroundColor");
   const textColor = _.get(fields, "textColor");
 
+  const inspectorProps = useContentfulInspectorMode()
+
   if (!fields) {
     return "";
   }
+
   return (
     <div className="">
       {/* {JSON.stringify(products)} */}
       <div className="bg-red-100x flex flex-col space-y-8 p-20 border-2 rounded-md shadow-md">
-        <h2 className="font-bold text-2xl text-center">{title}</h2>
+        <h2
+          {...inspectorProps({
+            entryId: id,
+            fieldId: "title",
+          })}
+          className="font-bold text-2xl text-center"
+        >
+          {title}
+        </h2>
 
         {Array.isArray(products)
           ? products.map((product, productIndex) => {
