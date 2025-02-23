@@ -11,8 +11,6 @@ export default function Home(props) {
 
   const inspectorProps = useContentfulInspectorMode()
 
-  console.log(page); // you can view this object in the console
-
   return (
     <>
       {/* {JSON.stringify(page)} */}
