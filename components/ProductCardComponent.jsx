@@ -34,6 +34,11 @@ const ProductCardComponent = (props) => {
     <div className="">
       <div className="flex flex-col lg:flex-row w-full  overflow-hidden rounded-md shadow-lg">
         <div
+          {...ContentfulLivePreview.getProps({
+            entryId: id,
+            fieldId: "gallery",
+            locale: DEFAULT_LOCALE,
+          })}
           style={{
             backgroundColor: backgroundColor ? backgroundColor : null,
             color: textColor ? textColor : null,
@@ -66,13 +71,29 @@ const ProductCardComponent = (props) => {
               {fields.title}
             </h2>
 
-            <div className="">
+            <div
+              {...ContentfulLivePreview.getProps({
+                entryId: id,
+                fieldId: "description",
+                locale: DEFAULT_LOCALE,
+              })}
+              className=""
+            >
               {documentToReactComponents(
                 fields.description,
                 richtextRenderOptions
               )}
             </div>
-            <p className=" text-xl ">${fields.price}</p>
+            <p
+              {...ContentfulLivePreview.getProps({
+                entryId: id,
+                fieldId: "price",
+                locale: DEFAULT_LOCALE,
+              })}
+              className=" text-xl "
+            >
+              ${fields.price}
+            </p>
             <button
               onClick={() => router.push(`/products/${fields.slug}`)}
               className=" bg-black text-white hover:bg-neuter rounded shadow-md"

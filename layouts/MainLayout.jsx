@@ -9,9 +9,7 @@ const MainLayout = (props) => {
       </Head>
 
       <div className="mt-4 p-2 bg-blau text-white">
-        <Link href="/">
-          <a>Nav</a>
-        </Link>
+        <Link href="/">Nav</Link>
       </div>
 
       <main>
